@@ -224,7 +224,7 @@ cmd_finish() {
 	if ! git_is_branch_merged_into "$BRANCH" "$MASTER_BRANCH"; then
 		git checkout "$MASTER_BRANCH" || \
 		  die "Could not check out $MASTER_BRANCH."
-		git merge --no-ff "$BRANCH" || \
+		git merge --log --no-ff "$BRANCH" || \
 		  die "There were merge conflicts."
 		  # TODO: What do we do now?
 	fi
@@ -253,7 +253,7 @@ cmd_finish() {
 
 		# TODO: Actually, accounting for 'git describe' pays, so we should
 		# ideally git merge --no-ff $tagname here, instead!
-		git merge --no-ff "$BRANCH" || \
+		git merge --log --no-ff "$BRANCH" || \
 		  die "There were merge conflicts."
 		  # TODO: What do we do now?
 	fi
